@@ -5,8 +5,8 @@ import "./styles.css";
 
 const links = [
   { titulo: "Início", link: "/" },
-  { titulo: "Novo", link: "/novoprotocolo" },
-  { titulo: "Busca", link: "/busca" },
+  { titulo: "Pacientes", link: "/pacientes" },
+  { titulo: "Marcação", link: "/marcacao" },
 ];
 
 const linksCode = links.map((link, i) => (
@@ -22,26 +22,14 @@ const Menu = ({ logout }) => {
     setMenuIsOpen((menuIsOpen) => !menuIsOpen);
   };
 
-  const menuCss = menuIsOpen && "menuShow";
+  const menuCss = menuIsOpen ? "menuShow" : "";
 
   return (
     <>
       <button className='menu__button' onClick={toggleMenu}>
         Menu
       </button>
-      <ul className={`menu ${menuCss}`}>
-        {linksCode}
-
-        <li className='menu__link'>
-          <Link to='/relatorio'>Relatório</Link>
-        </li>
-        <li className='menu__link'>
-          <Link to='/usuarios'>Usuários</Link>
-        </li>
-        <li className='menu__link logout' onClick={logout}>
-          Logout
-        </li>
-      </ul>
+      <ul className={`menu ${menuCss}`}>{linksCode}</ul>
     </>
   );
 };

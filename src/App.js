@@ -7,14 +7,14 @@ import Routes from "./utils/routes";
 
 function App() {
   return (
-    <div className='App'>
-      <BrowserRouter>
+    <BrowserRouter>
+      <div className='App'>
         <Header>
           <Menu logout='' />
         </Header>
         <Routes />
-      </BrowserRouter>
-    </div>
+      </div>
+    </BrowserRouter>
   );
 }
 

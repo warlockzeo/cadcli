@@ -1,3 +1,7 @@
+ul {
+  margin: 0;
+}
+
 .menu {
   padding: 0;
   z-index: 998;
@@ -34,7 +38,7 @@
     flex-direction: row;
     position: absolute;
     top: 0;
-    right: 10px;
+    right: 0;
   }
 
   .menu__link {
