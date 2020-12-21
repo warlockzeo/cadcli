@@ -1,11 +1,9 @@
 import React from "react";
 
-// import { Container } from './styles';
-
 function Home() {
   return (
     <>
-      <h1>Home</h1>
+      <h1>Home {}</h1>
       <div>
         Lista de marcações pendentes ordenadas por data/hora, médico e nome
       </div>

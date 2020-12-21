@@ -6,7 +6,8 @@ import "./styles.css";
 const links = [
   { titulo: "Início", link: "/" },
   { titulo: "Pacientes", link: "/pacientes" },
-  { titulo: "Marcação", link: "/marcacao" },
+  { titulo: "Profissionais", link: "/profissionais" },
+  { titulo: "Marcações", link: "/marcacoes" },
 ];
 
 const linksCode = links.map((link, i) => (
