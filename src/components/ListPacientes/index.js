@@ -61,7 +61,7 @@ const ListPacientes = ({ data, onAdd, onEdit, onView }) => {
 
     return (
       <>
-        <h1>Usuários</h1>
+        <h1>Pacientes</h1>
         <Table hover responsive>
           <thead>
             <tr>
@@ -72,7 +72,7 @@ const ListPacientes = ({ data, onAdd, onEdit, onView }) => {
                   variant='success'
                   className='buttonMargim'
                   onClick={() => onAdd()}>
-                  Novo Usuário
+                  Novo Paciente
                 </Button>
               </th>
             </tr>
@@ -85,13 +85,13 @@ const ListPacientes = ({ data, onAdd, onEdit, onView }) => {
 
   return (
     <>
-      <h1>Nenhum usuário cadastrado</h1>
+      <h1>Nenhum Paciente cadastrado</h1>
       <Button
         size='sm'
         variant='success'
         className='buttonMargim'
         onClick={() => onAdd()}>
-        Novo Usuário
+        Novo Paciente
       </Button>
     </>
   );

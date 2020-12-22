@@ -1,9 +1,9 @@
 import React from "react";
 import { Table, Button } from "react-bootstrap";
 
-const ListProfissionais = ({ users, onAdd, onEdit }) => {
-  if (Array.isArray(users) && users?.length > 0) {
-    const keyFields = Object.keys(users[0]).filter(
+const ListProfissionais = ({ data, onAdd, onEdit }) => {
+  if (Array.isArray(data) && data?.length > 0) {
+    const keyFields = Object.keys(data[0]).filter(
       (field) => field !== "id" && field !== "nivel",
     ); //recupera nome das propriedades
 
@@ -11,31 +11,23 @@ const ListProfissionais = ({ users, onAdd, onEdit }) => {
       <th key={index}>{campo.toUpperCase()}</th>
     ));
 
-    const tbody = users.map((user, index) => {
+    const tbody = data.map((profissional, index) => {
       const list = keyFields.map((campo, index) => {
         return (
           <td className='text-left' key={index}>
-            {user[campo]}
+            {profissional[campo]}
           </td>
         );
       });
       return (
-        <tr
-          key={index}
-          className={
-            user.nivel === "0"
-              ? "table-danger"
-              : user.nivel === "10"
-              ? "table-success"
-              : ""
-          }>
+        <tr key={index}>
           {list}
           <td className='text-right'>
             <Button
               size='sm'
               variant='primary'
               className='buttonMargim'
-              onClick={() => onEdit(user.id)}>
+              onClick={() => onEdit(profissional.id)}>
               Editar
             </Button>
           </td>
@@ -45,7 +37,7 @@ const ListProfissionais = ({ users, onAdd, onEdit }) => {
 
     return (
       <>
-        <h1>Usuários</h1>
+        <h1>Profissionais</h1>
         <Table hover responsive>
           <thead>
             <tr>
@@ -56,7 +48,7 @@ const ListProfissionais = ({ users, onAdd, onEdit }) => {
                   variant='success'
                   className='buttonMargim'
                   onClick={() => onAdd()}>
-                  Novo Usuário
+                  Novo Profissional
                 </Button>
               </th>
             </tr>
@@ -69,13 +61,13 @@ const ListProfissionais = ({ users, onAdd, onEdit }) => {
 
   return (
     <>
-      <h1>Nenhum usuário cadastrado</h1>
+      <h1>Nenhum Profissional cadastrado</h1>
       <Button
         size='sm'
         variant='success'
         className='buttonMargim'
         onClick={() => onAdd()}>
-        Novo Usuário
+        Novo profissional
       </Button>
     </>
   );

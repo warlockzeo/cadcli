@@ -4,11 +4,11 @@ import FormCadPacientes from "../../components/FormCadPacientes";
 import ListPacientes from "../../components/ListPacientes";
 
 const Pacientes = () => {
-  const [users, setUsers] = useState([]);
+  const [users, setPacientes] = useState([]);
   const [show, setShow] = useState("list");
-  const [userToEdit, setUserToEdit] = useState({});
+  const [pacienteToEdit, setPacienteToEdit] = useState({});
 
-  const reduxStateUsers = useSelector((state) => state);
+  const reduxStatePacientes = useSelector((state) => state);
   const dispatch = useDispatch();
 
   const onAdd = () => {
@@ -21,7 +21,7 @@ const Pacientes = () => {
 
   const onEdit = (data) => {
     setShow("edit");
-    setUserToEdit(data);
+    setPacienteToEdit(data);
   };
 
   const onView = () => {};
@@ -30,18 +30,18 @@ const Pacientes = () => {
 
   const handleSubmit = (data) => {
     dispatch({
-      type: "Add",
+      type: "AddPaciente",
       data: { nome: "ana", pai: "joao" },
     });
 
     dispatch({
-      type: "Edit",
+      type: "EditPaciente",
       data,
     });
   };
   useEffect(() => {
-    setUsers(reduxStateUsers?.users);
-  }, [reduxStateUsers]);
+    setPacientes(reduxStatePacientes?.pacientes);
+  }, [reduxStatePacientes]);
 
   switch (show) {
     case "add":
@@ -49,7 +49,7 @@ const Pacientes = () => {
         <FormCadPacientes
           onSubmit={handleSubmit}
           onCancel={onCancel}
-          edit={userToEdit}
+          edit={pacienteToEdit}
         />
       );
     case "edit":

@@ -2,16 +2,21 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
-import ReducerUsers from "./storage/ReducerUsers";
+import ReducerPacientes from "./storage/ReducerPacientes";
+// import ReducerProfissionais from "./storage/ReducerProfissionais";
+// import ReducerMarcacoes from "./storage/ReducerMarcacoes";
 
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
-const users = createStore(ReducerUsers);
+const pacientes = createStore(ReducerPacientes);
+// const profissionais = createStore(ReducerProfissionais);
+// const marcacoes = createStore(ReducerMarcacoes);
+
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={users}>
+    <Provider store={pacientes}>
       <App />
     </Provider>
   </React.StrictMode>,

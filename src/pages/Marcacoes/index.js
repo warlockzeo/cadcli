@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import FormCad from "../../components/FormCad";
+import FormCadMarcacao from "../../components/FormCadMarcacao";
 import ListMarcacoes from "../../components/ListMarcacoes";
 
 const Marcacoes = () => {
@@ -23,38 +23,37 @@ const Marcacoes = () => {
     setShow("edit");
     setMarcacaoToEdit(data);
   };
+
   const onCancel = () => setShow("list");
 
   const handleSubmit = (data) => {
-    dispatch({
-      type: "Add",
-      data: { nome: "ana", pai: "joao" },
-    });
-
-    dispatch({
-      type: "Edit",
-      data,
-    });
+    console.log(data);
+    setShow("list");
   };
+
   useEffect(() => {
-    setMarcacoes(reduxStateMarcacoes?.Marcacoes);
+    setMarcacoes(reduxStateMarcacoes?.marcacoes);
   }, [reduxStateMarcacoes]);
 
   switch (show) {
     case "add":
       return (
-        <FormCad
+        <FormCadMarcacao
           onSubmit={handleSubmit}
           onCancel={onCancel}
           edit={marcacaoToEdit}
         />
       );
     case "edit":
-      return <FormCad onSubmit={handleSubmit} onCancel={onCancel} />;
-    default:
       return (
-        <ListMarcacoes Marcacoes={marcacoes} onAdd={onAdd} onEdit={onEdit} />
+        <FormCadMarcacao
+          onSubmit={handleSubmit}
+          onCancel={onCancel}
+          data={marcacaoToEdit}
+        />
       );
+    default:
+      return <ListMarcacoes data={marcacoes} onAdd={onAdd} onEdit={onEdit} />;
   }
 };
 

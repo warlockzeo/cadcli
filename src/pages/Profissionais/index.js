@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import FormCad from "../../components/FormCad";
+import FormCadProfissionais from "../../components/FormCadProfissionais";
 import ListProfissionais from "../../components/ListProfissionais";
 
 const Profissionais = () => {
@@ -14,7 +15,7 @@ const Profissionais = () => {
   const onAdd = () => {
     setShow("add");
     dispatch({
-      type: "Add",
+      type: "AddProfissional",
       data: { id: 3, nome: "ana", pai: "joao" },
     });
   };
@@ -27,15 +28,16 @@ const Profissionais = () => {
 
   const handleSubmit = (data) => {
     dispatch({
-      type: "Add",
+      type: "AddProfissional",
       data: { nome: "ana", pai: "joao" },
     });
 
     dispatch({
-      type: "Edit",
+      type: "EditProfissional",
       data,
     });
   };
+
   useEffect(() => {
     setProfissionais(reduxStateProfissionais?.profissionais);
   }, [reduxStateProfissionais]);
@@ -43,21 +45,19 @@ const Profissionais = () => {
   switch (show) {
     case "add":
       return (
-        <FormCad
+        <FormCadProfissionais
           onSubmit={handleSubmit}
           onCancel={onCancel}
           edit={profissionalToEdit}
         />
       );
     case "edit":
-      return <FormCad onSubmit={handleSubmit} onCancel={onCancel} />;
+      return (
+        <FormCadProfissionais onSubmit={handleSubmit} onCancel={onCancel} />
+      );
     default:
       return (
-        <ListProfissionais
-          Profissionais={profissionais}
-          onAdd={onAdd}
-          onEdit={onEdit}
-        />
+        <ListProfissionais data={profissionais} onAdd={onAdd} onEdit={onEdit} />
       );
   }
 };

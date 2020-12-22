@@ -13,13 +13,35 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(async () => {
-    const users = await fetch("http://protocolo.v2.api/users", {
+    const pacientes = await fetch("http://protocolo.v2.api/users", {
       method: "GET",
       mode: "cors",
       headers: {},
     }).then((response) => response.json());
 
-    dispatch({ type: "List", data: users });
+    dispatch({ type: "ListPacientes", data: pacientes });
+
+    const profissionais = await fetch("http://protocolo.v2.api/users", {
+      method: "GET",
+      mode: "cors",
+      headers: {},
+    }).then((response) => response.json());
+
+    // const profissionais2 = [{ nome: "mario", profissao: "programador" }];
+
+    dispatch({ type: "ListProfissionais", data: profissionais });
+
+    const marcacoes = await fetch("http://protocolo.v2.api/users", {
+      method: "GET",
+      mode: "cors",
+      headers: {},
+    }).then((response) => response.json());
+
+    // const marcacoes2 = [
+    //   { paciente: "mario", profissional: "joão", data: "2020-12-28" },
+    // ];
+
+    dispatch({ type: "ListMarcacoes", data: marcacoes });
   }, []);
 
   return (
