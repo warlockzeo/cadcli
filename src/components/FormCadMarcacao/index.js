@@ -16,7 +16,8 @@ const FormCadMarcacao = ({ onSubmit, onCancel, edit, data }) => {
   return (
     <>
       <Formik
-        initialValues={data}
+        initialValues={{ paciente: "", profissional: "", date: "" }}
+        //initialValues={data}
         onSubmit={(values, { setSubmitting }) => {
           onClickSubmit(values);
         }}>
