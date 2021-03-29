@@ -1,0 +1,12 @@
+cadastro de pacientes
+
+cadastro de profissionais
+
+Marcação de exames
+
+Histórico de marcações
+
+Aviso das marcações e aniversários do dia
+
+Identificar na marcação e na entrada do paciente se será consulta, procedimento ou volta
+

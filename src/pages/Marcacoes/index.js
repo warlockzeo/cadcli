@@ -1,34 +1,34 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import FormCadMarcacao from "../../components/FormCadMarcacao";
-import ListMarcacoes from "../../components/ListMarcacoes";
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import FormCadMarcacao from '../../components/FormCadMarcacao';
+import ListMarcacoes from '../../components/ListMarcacoes';
 
 const Marcacoes = () => {
   const [marcacoes, setMarcacoes] = useState([]);
-  const [show, setShow] = useState("list");
+  const [show, setShow] = useState('list');
   const [marcacaoToEdit, setMarcacaoToEdit] = useState({});
 
   const reduxStateMarcacoes = useSelector((state) => state);
   const dispatch = useDispatch();
 
   const onAdd = () => {
-    setShow("add");
+    setShow('add');
     dispatch({
-      type: "Add",
-      data: { id: 3, nome: "ana", pai: "joao" },
+      type: 'Add',
+      data: { id: 3, nome: 'ana', pai: 'joao' }
     });
   };
 
   const onEdit = (data) => {
-    setShow("edit");
+    setShow('edit');
     setMarcacaoToEdit(data);
   };
 
-  const onCancel = () => setShow("list");
+  const onCancel = () => setShow('list');
 
   const handleSubmit = (data) => {
     console.log(data);
-    setShow("list");
+    setShow('list');
   };
 
   useEffect(() => {
@@ -36,7 +36,7 @@ const Marcacoes = () => {
   }, [reduxStateMarcacoes]);
 
   switch (show) {
-    case "add":
+    case 'add':
       return (
         <FormCadMarcacao
           onSubmit={handleSubmit}
@@ -44,7 +44,7 @@ const Marcacoes = () => {
           edit={marcacaoToEdit}
         />
       );
-    case "edit":
+    case 'edit':
       return (
         <FormCadMarcacao
           onSubmit={handleSubmit}

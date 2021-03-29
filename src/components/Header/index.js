@@ -1,5 +1,5 @@
-import React from "react";
-import Styled from "styled-components";
+import React from 'react';
+import Styled from 'styled-components';
 
 const HeaderTag = Styled.div`
   display: flex;
@@ -30,7 +30,7 @@ const Titulo = Styled.h1`
 const Header = ({ business, children }) => {
   return (
     <HeaderTag>
-      <Logo src='/assets/images/logo-pmtn.jpg' alt='logomarca' />
+      <Logo src="/assets/images/logo-pmtn.jpg" alt="logomarca" />
       <div>
         <Titulo>Cadcli{business?.name && `${business.name}`} </Titulo>
       </div>

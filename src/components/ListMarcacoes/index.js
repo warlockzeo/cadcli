@@ -1,10 +1,10 @@
-import React from "react";
-import { Table, Button } from "react-bootstrap";
+import React from 'react';
+import { Table, Button } from 'react-bootstrap';
 
 const ListMarcacoes = ({ data, onAdd, onEdit }) => {
   if (Array.isArray(data) && data?.length > 0) {
     const keyFields = Object.keys(data[0]).filter(
-      (field) => field !== "id" && field !== "nivel",
+      (field) => field !== 'id' && field !== 'nivel'
     ); //recupera nome das propriedades
 
     const thead = keyFields.map((campo, index) => (
@@ -14,7 +14,7 @@ const ListMarcacoes = ({ data, onAdd, onEdit }) => {
     const tbody = data.map((marcacao, index) => {
       const list = keyFields.map((campo, index) => {
         return (
-          <td className='text-left' key={index}>
+          <td className="text-left" key={index}>
             {marcacao[campo]}
           </td>
         );
@@ -22,12 +22,13 @@ const ListMarcacoes = ({ data, onAdd, onEdit }) => {
       return (
         <tr key={index}>
           {list}
-          <td className='text-right'>
+          <td className="text-right">
             <Button
-              size='sm'
-              variant='primary'
-              className='buttonMargim'
-              onClick={() => onEdit(marcacao)}>
+              size="sm"
+              variant="primary"
+              className="buttonMargim"
+              onClick={() => onEdit(marcacao)}
+            >
               Remarcar
             </Button>
           </td>
@@ -42,12 +43,13 @@ const ListMarcacoes = ({ data, onAdd, onEdit }) => {
           <thead>
             <tr>
               {thead}
-              <th colSpan={2} className='text-right'>
+              <th colSpan={2} className="text-right">
                 <Button
-                  size='sm'
-                  variant='success'
-                  className='buttonMargim'
-                  onClick={() => onAdd()}>
+                  size="sm"
+                  variant="success"
+                  className="buttonMargim"
+                  onClick={() => onAdd()}
+                >
                   Nova marcação
                 </Button>
               </th>
@@ -63,10 +65,11 @@ const ListMarcacoes = ({ data, onAdd, onEdit }) => {
     <>
       <h1>Nenhuma marcação cadastrada</h1>
       <Button
-        size='sm'
-        variant='success'
-        className='buttonMargim'
-        onClick={() => onAdd()}>
+        size="sm"
+        variant="success"
+        className="buttonMargim"
+        onClick={() => onAdd()}
+      >
         Nova marcação
       </Button>
     </>

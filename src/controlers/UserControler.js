@@ -1,8 +1,8 @@
 const ListUsers = () => {
-  fetch("http://protocolo.v2.api/users", {
-    method: "GET",
-    mode: "cors",
-    headers: {},
+  fetch('http://protocolo.v2.api/users', {
+    method: 'GET',
+    mode: 'cors',
+    headers: {}
   })
     .then(async (response) => {
       const data = await response.json();
@@ -18,7 +18,7 @@ const ListUsers = () => {
       return { postId: data.id };
     })
     .catch((error) => {
-      console.error("There was an error!", error);
+      console.error('There was an error!', error);
       return { errorMessage: error.toString() };
     });
 };

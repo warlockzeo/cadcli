@@ -1,50 +1,66 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import FormCadPacientes from "../../components/FormCadPacientes";
-import ListPacientes from "../../components/ListPacientes";
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import FormCadPacientes from '../../components/FormCadPacientes';
+import ListTable from '../../components/ListTable';
 
 const Pacientes = () => {
-  const [users, setPacientes] = useState([]);
-  const [show, setShow] = useState("list");
+  const [pacientes, setPacientes] = useState([]);
+  const [show, setShow] = useState('list');
   const [pacienteToEdit, setPacienteToEdit] = useState({});
 
-  const reduxStatePacientes = useSelector((state) => state);
-  const dispatch = useDispatch();
+  const reduxStatePacientes = useSelector((state) => state?.pacientes);
 
   const onAdd = () => {
-    setShow("add");
-    dispatch({
-      type: "Add",
-      data: { id: 3, nome: "ana", pai: "joao" },
-    });
+    setShow('add');
   };
 
   const onEdit = (data) => {
-    setShow("edit");
+    setShow('edit');
     setPacienteToEdit(data);
   };
 
   const onView = () => {};
 
-  const onCancel = () => setShow("list");
+  const onSearch = () => {};
 
-  const handleSubmit = (data) => {
-    dispatch({
-      type: "AddPaciente",
-      data: { nome: "ana", pai: "joao" },
-    });
+  const onCancel = () => setShow('list');
 
-    dispatch({
-      type: "EditPaciente",
-      data,
-    });
-  };
+  const handleSubmit = (data) => {};
+
   useEffect(() => {
-    setPacientes(reduxStatePacientes?.pacientes);
+    setPacientes([reduxStatePacientes]);
   }, [reduxStatePacientes]);
 
+  const renderListTable = (
+    <ListTable
+      data={pacientes}
+      onAdd={onAdd}
+      onEdit={onEdit}
+      onView={onView}
+      onSearch={onSearch}
+    >
+      Pacientes
+    </ListTable>
+  );
+
+  const renderNoPacientes = () => {
+    <Container>
+      <h1>Nenhum Paciente cadastrado</h1>
+      <Button
+        size="sm"
+        variant="success"
+        className="buttonMargim"
+        onClick={() => onAdd()}
+      >
+        Novo Paciente
+      </Button>
+    </Container>;
+  };
+
   switch (show) {
-    case "add":
+    case 'add':
+      return <FormCadPacientes onSubmit={handleSubmit} onCancel={onCancel} />;
+    case 'edit':
       return (
         <FormCadPacientes
           onSubmit={handleSubmit}
@@ -52,17 +68,8 @@ const Pacientes = () => {
           edit={pacienteToEdit}
         />
       );
-    case "edit":
-      return <FormCadPacientes onSubmit={handleSubmit} onCancel={onCancel} />;
     default:
-      return (
-        <ListPacientes
-          data={users}
-          onAdd={onAdd}
-          onEdit={onEdit}
-          onView={onView}
-        />
-      );
+      return pacientes.length > 0 ? renderListTable : renderNoPacientes;
   }
 };
 

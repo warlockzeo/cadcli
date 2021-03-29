@@ -1,26 +1,22 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { Provider } from "react-redux";
-import { createStore } from "redux";
-import ReducerPacientes from "./storage/ReducerPacientes";
-// import ReducerProfissionais from "./storage/ReducerProfissionais";
-// import ReducerMarcacoes from "./storage/ReducerMarcacoes";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import ReducerPacientes from './storage/reducers/ReducerPacientes';
 
-import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
 
-const pacientes = createStore(ReducerPacientes);
-// const profissionais = createStore(ReducerProfissionais);
-// const marcacoes = createStore(ReducerMarcacoes);
+const store = createStore(ReducerPacientes);
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={pacientes}>
+    <Provider store={store}>
       <App />
     </Provider>
   </React.StrictMode>,
-  document.getElementById("root"),
+  document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function

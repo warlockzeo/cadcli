@@ -1,40 +1,39 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import FormCadProfissionais from "../../components/FormCadProfissionais";
-import ListProfissionais from "../../components/ListProfissionais";
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import FormCadProfissionais from '../../components/FormCadProfissionais';
+import ListProfissionais from '../../components/ListProfissionais';
 
 const Profissionais = () => {
   const [profissionais, setProfissionais] = useState([]);
-  const [show, setShow] = useState("list");
+  const [show, setShow] = useState('list');
   const [profissionalToEdit, setProfissionalToEdit] = useState({});
 
   const reduxStateProfissionais = useSelector((state) => state);
   const dispatch = useDispatch();
 
   const onAdd = () => {
-    setShow("add");
+    setShow('add');
     dispatch({
-      type: "AddProfissional",
-      data: { id: 3, nome: "ana", pai: "joao" },
+      type: 'AddProfissional',
+      data: { id: 3, nome: 'ana', pai: 'joao' }
     });
   };
 
   const onEdit = (data) => {
-    setShow("edit");
+    setShow('edit');
     setProfissionalToEdit(data);
   };
-  const onCancel = () => setShow("list");
+  const onCancel = () => setShow('list');
 
   const handleSubmit = (data) => {
     dispatch({
-      type: "AddProfissional",
-      data: { nome: "ana", pai: "joao" },
+      type: 'AddProfissional',
+      data: { nome: 'ana', pai: 'joao' }
     });
 
     dispatch({
-      type: "EditProfissional",
-      data,
+      type: 'EditProfissional',
+      data
     });
   };
 
@@ -43,7 +42,7 @@ const Profissionais = () => {
   }, [reduxStateProfissionais]);
 
   switch (show) {
-    case "add":
+    case 'add':
       return (
         <FormCadProfissionais
           onSubmit={handleSubmit}
@@ -51,7 +50,7 @@ const Profissionais = () => {
           edit={profissionalToEdit}
         />
       );
-    case "edit":
+    case 'edit':
       return (
         <FormCadProfissionais onSubmit={handleSubmit} onCancel={onCancel} />
       );

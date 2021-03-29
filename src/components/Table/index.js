@@ -39,17 +39,27 @@ function stableSort(array, cmp) {
     if (order !== 0) return order;
     return a[1] - b[1];
   });
-  return stabilizedThis.map(el => el[0]);
+  return stabilizedThis.map((el) => el[0]);
 }
 
 function getSorting(order, orderBy) {
-  return order === 'desc' ? (a, b) => desc(a, b, orderBy) : (a, b) => -desc(a, b, orderBy);
+  return order === 'desc'
+    ? (a, b) => desc(a, b, orderBy)
+    : (a, b) => -desc(a, b, orderBy);
 }
 
 // Recebe os dados do cabeçalho via props
 function EnhancedTableHead(props) {
-  const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort, headRows } = props;
-  const createSortHandler = property => event => {
+  const {
+    onSelectAllClick,
+    order,
+    orderBy,
+    numSelected,
+    rowCount,
+    onRequestSort,
+    headRows
+  } = props;
+  const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
   };
 
@@ -63,7 +73,7 @@ function EnhancedTableHead(props) {
             onChange={onSelectAllClick}
           />
         </TableCell>
-        {headRows.map(row => (
+        {headRows.map((row) => (
           <TableCell
             key={row.id}
             // align={row.numeric ? 'right' : 'left'}
@@ -92,44 +102,44 @@ EnhancedTableHead.propTypes = {
   onSelectAllClick: PropTypes.func.isRequired,
   order: PropTypes.string.isRequired,
   orderBy: PropTypes.string.isRequired,
-  rowCount: PropTypes.number.isRequired,
+  rowCount: PropTypes.number.isRequired
 };
 
-const useToolbarStyles = makeStyles(theme => ({
+const useToolbarStyles = makeStyles((theme) => ({
   root: {
     paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(1),
+    paddingRight: theme.spacing(1)
   },
   highlight:
     theme.palette.type === 'light'
       ? {
           color: theme.palette.secondary.main,
-          backgroundColor: lighten(theme.palette.secondary.light, 0.85),
+          backgroundColor: lighten(theme.palette.secondary.light, 0.85)
         }
       : {
           color: theme.palette.text.primary,
-          backgroundColor: theme.palette.secondary.dark,
+          backgroundColor: theme.palette.secondary.dark
         },
   spacer: {
-    flex: '1 1 100%',
+    flex: '1 1 100%'
   },
   actions: {
     color: theme.palette.text.secondary,
-    width: '200px',
+    width: '200px'
   },
   title: {
-    flex: '0 0 auto',
-  },
+    flex: '0 0 auto'
+  }
 }));
 
-const EnhancedTableToolbar = props => {
+const EnhancedTableToolbar = (props) => {
   const classes = useToolbarStyles();
   const { numSelected } = props;
 
   return (
     <Toolbar
       className={clsx(classes.root, {
-        [classes.highlight]: numSelected > 0,
+        [classes.highlight]: numSelected > 0
       })}
     >
       <div className={classes.title}>
@@ -197,24 +207,24 @@ const EnhancedTableToolbar = props => {
 };
 
 EnhancedTableToolbar.propTypes = {
-  numSelected: PropTypes.number.isRequired,
+  numSelected: PropTypes.number.isRequired
 };
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    width: '100%',
+    width: '100%'
     // marginTop: theme.spacing(3)
   },
   paper: {
     width: '100%',
-    marginBottom: theme.spacing(2),
+    marginBottom: theme.spacing(2)
   },
   table: {
-    minWidth: 750,
+    minWidth: 750
   },
   tableWrapper: {
-    overflowX: 'auto',
-  },
+    overflowX: 'auto'
+  }
 }));
 
 function EnhancedTable(props) {
@@ -254,7 +264,10 @@ function EnhancedTable(props) {
     } else if (selectedIndex === selected.length - 1) {
       newSelected = newSelected.concat(selected.slice(0, -1));
     } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(selected.slice(0, selectedIndex), selected.slice(selectedIndex + 1));
+      newSelected = newSelected.concat(
+        selected.slice(0, selectedIndex),
+        selected.slice(selectedIndex + 1)
+      );
     }
 
     setSelected(newSelected);
@@ -288,9 +301,10 @@ function EnhancedTable(props) {
   function handleFilter() {
     props.filter();
   }
-  const isSelected = name => selected.indexOf(name) !== -1;
+  const isSelected = (name) => selected.indexOf(name) !== -1;
 
-  const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+  const emptyRows =
+    rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
   return (
     <div className={classes.root}>
@@ -310,7 +324,11 @@ function EnhancedTable(props) {
           filter={handleFilter}
         />
         <div className={classes.tableWrapper}>
-          <Table className={classes.table} aria-labelledby="tableTitle" size="medium">
+          <Table
+            className={classes.table}
+            aria-labelledby="tableTitle"
+            size="medium"
+          >
             <EnhancedTableHead
               numSelected={selected.length}
               order={order}
@@ -328,7 +346,7 @@ function EnhancedTable(props) {
                   return (
                     <TableRow
                       hover
-                      onClick={event => handleClick(event, id, row)}
+                      onClick={(event) => handleClick(event, id, row)}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
@@ -338,7 +356,7 @@ function EnhancedTable(props) {
                       <TableCell padding="checkbox">
                         <Checkbox checked={isItemSelected} />
                       </TableCell>
-                      {props.fields.map(campo => (
+                      {props.fields.map((campo) => (
                         <TableCell
                           key={campo.id}
                           align={campo.align}
@@ -367,10 +385,10 @@ function EnhancedTable(props) {
           rowsPerPage={rowsPerPage}
           page={page}
           backIconButtonProps={{
-            'aria-label': 'Previous Page',
+            'aria-label': 'Previous Page'
           }}
           nextIconButtonProps={{
-            'aria-label': 'Next Page',
+            'aria-label': 'Next Page'
           }}
           onChangePage={handleChangePage}
           onChangeRowsPerPage={handleChangeRowsPerPage}

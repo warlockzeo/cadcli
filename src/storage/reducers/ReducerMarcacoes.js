@@ -5,15 +5,15 @@ const initialData = [
 
 const ReducerMarcacoes = (state = { marcacoes: initialData }, action) => {
   switch (action.type) {
-    case "List": {
+    case 'List': {
       //ler do banco de dados
       return { marcacoes: action.data };
     }
-    case "Add": {
+    case 'Add': {
       //Atualizar state e salvar no banco de dados
       return { marcacoes: [...state.marcacoes, action.data] };
     }
-    case "Edit": {
+    case 'Edit': {
       //Atualizar state e salvar no banco de dados
       return { marcacoes: [...state.marcacoes, action.data] };
     }
