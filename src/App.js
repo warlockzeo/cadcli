@@ -4,9 +4,10 @@ import React, { useEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
+import Routes from './utils/routes';
+
 import Header from './components/Header';
 import Menu from './components/Menu';
-import Routes from './utils/routes';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -20,20 +21,22 @@ const App = () => {
       .then((response) => response.json())
       .then((data) => {
         //console.log(data);
-        dispatch({ type: 'LOAD', data });
+        dispatch({ type: 'LOADPACIENTES', data });
       })
       .catch((error) => {
-        //console.log(error);
-        const dados = { nome: 'mario' };
-        dispatch({ type: 'LOAD', data: dados });
+        console.log(error);
       });
   }, []);
 
   return (
     <BrowserRouter>
       <div className="App">
-        <Header>
-          <Menu logout="" />
+        <Header
+          logo="/assets/images/logo-pmtn.jpg"
+          logoAlt="Logomarca"
+          business="CLIMEG"
+        >
+          <Menu />
         </Header>
         <Routes />
       </div>

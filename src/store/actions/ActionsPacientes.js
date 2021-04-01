@@ -1,4 +1,4 @@
-export const LOAD = 'LOAD';
+export const LOAD = 'LOADPACIENTES';
 export const ADD = 'ADD';
 export const DELETE = 'DELETE';
 export const EDIT = 'EDIT';

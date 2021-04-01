@@ -27,12 +27,12 @@ const Titulo = Styled.h1`
   font-size: 1.8em;
 `;
 
-const Header = ({ business, children }) => {
+const Header = ({ logo, logoAlt, business, children }) => {
   return (
     <HeaderTag>
-      <Logo src="/assets/images/logo-pmtn.jpg" alt="logomarca" />
+      <Logo src={logo} alt={logoAlt} />
       <div>
-        <Titulo>Cadcli{business?.name && `${business.name}`} </Titulo>
+        <Titulo>Cadcli {business}</Titulo>
       </div>
       {children}
     </HeaderTag>

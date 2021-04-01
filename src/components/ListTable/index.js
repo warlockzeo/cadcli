@@ -1,14 +1,13 @@
 import React from 'react';
 import { Table, Button } from 'react-bootstrap';
+import { keyframes } from 'styled-components';
 
 const ListTable = ({ children, data, onAdd, onEdit, onView }) => {
   if (data?.length > 0) {
     const keyFields = Object.keys(data[0]).filter((field) => field !== 'id'); //recupera nome dos campos
-
     const thead = keyFields.map((campo, index) => (
       <th key={index}>{campo.toUpperCase()}</th>
     ));
-
     const tbody = data.map((registro, index) => {
       const list = keyFields.map((campo, index) => {
         return (
@@ -17,7 +16,6 @@ const ListTable = ({ children, data, onAdd, onEdit, onView }) => {
           </td>
         );
       });
-
       return (
         <tr key={index}>
           {list}
@@ -39,7 +37,7 @@ const ListTable = ({ children, data, onAdd, onEdit, onView }) => {
                 size="sm"
                 variant="secondary"
                 className="buttonMargim"
-                onClick={() => onEdit(registro.id)}
+                onClick={() => onView(registro.id)}
               >
                 Histórico
               </Button>
@@ -50,7 +48,6 @@ const ListTable = ({ children, data, onAdd, onEdit, onView }) => {
         </tr>
       );
     });
-
     return (
       <>
         <h1>{children}</h1>

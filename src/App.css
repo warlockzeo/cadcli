@@ -1,0 +1,11 @@
+* {
+  box-sizing: border-box;
+}
+.btn {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.btn:not(:nth-child(0)) {
+  margin-right: 10px;
+}

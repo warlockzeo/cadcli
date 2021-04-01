@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { Container, Button } from 'react-bootstrap';
 import FormCadPacientes from '../../components/FormCadPacientes';
 import ListTable from '../../components/ListTable';
 
@@ -8,7 +9,9 @@ const Pacientes = () => {
   const [show, setShow] = useState('list');
   const [pacienteToEdit, setPacienteToEdit] = useState({});
 
-  const reduxStatePacientes = useSelector((state) => state?.pacientes);
+  const dispatch = useDispatch();
+
+  const reduxStatePacientes = useSelector((state) => state?.pacientes.dados);
 
   const onAdd = () => {
     setShow('add');
@@ -17,18 +20,30 @@ const Pacientes = () => {
   const onEdit = (data) => {
     setShow('edit');
     setPacienteToEdit(data);
+    console.log(data);
   };
 
-  const onView = () => {};
+  const onView = (id) => {
+    console.log(id);
+  };
 
-  const onSearch = () => {};
+  const onSearch = (data) => {};
 
-  const onCancel = () => setShow('list');
+  const onCancel = () => {
+    setPacienteToEdit({});
+    setShow('list');
+  };
 
-  const handleSubmit = (data) => {};
+  const handleSubmit = (data) => {
+    dispatch({
+      type: 'ADD_PACIENTE',
+      data
+    });
+    setShow('list');
+  };
 
   useEffect(() => {
-    setPacientes([reduxStatePacientes]);
+    setPacientes(reduxStatePacientes);
   }, [reduxStatePacientes]);
 
   const renderListTable = (
@@ -43,7 +58,7 @@ const Pacientes = () => {
     </ListTable>
   );
 
-  const renderNoPacientes = () => {
+  const renderNoPacientes = (
     <Container>
       <h1>Nenhum Paciente cadastrado</h1>
       <Button
@@ -54,8 +69,8 @@ const Pacientes = () => {
       >
         Novo Paciente
       </Button>
-    </Container>;
-  };
+    </Container>
+  );
 
   switch (show) {
     case 'add':
